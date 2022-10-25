@@ -1,0 +1,8 @@
+{
+	"url-backend": "127.0.0.1",
+	"port": 8090,
+	
+	"data-db-connection": "mongodb+srv://root:1234@cluster0.yjw9fdc.mongodb.net/dbMongoPrueba?retryWrites=true&w=majority",
+	"name-db": "dbMongoPy-Flask"
+
+}
