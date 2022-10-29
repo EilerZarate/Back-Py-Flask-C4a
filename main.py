@@ -113,7 +113,24 @@ def getResultados():
     json=miControladorResultado.index()
     return jsonify(json)
 
-if __name__=='__main__':
-	dataConfig = loadFileConfig()
-	print("Server running : "+"http://"+dataConfig["url-backend"]+":" + str(dataConfig["port"]))
-	serve(app,host=dataConfig["url-backend"],port=dataConfig["port"])
+@app.route("/resultados/candidato/<string:id_candidato>/mesa/<string:id_mesa>",methods=['POST'])
+def crearResultado(id_candidato,id_mesa):
+    data = request.get_json()
+    json=miControladorResultado.create(data, id_candidato,id_mesa)
+    return jsonify(json)
+
+@app.route("/resultados/<string:id>",methods=['GET'])
+def getResultado(id):
+    json=miControladorResultado.show(id)
+    return jsonify(json)
+
+@app.route("/resultados/candidato/<string:id_candidato>/mesa/<string:id_mesa>",methods=['PUT'])
+def modificarResultado(id):
+    data = request.get_json()
+    json=miControladorResultado.update(id,data)
+    return jsonify(json)
+
+@app.route("/resultados/<string:id>",methods=['DELETE'])
+def eliminarResultado(id):
+    json=miControladorResultado.delete(id)
+    return jsonify(json)
