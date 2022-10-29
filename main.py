@@ -134,3 +134,8 @@ def modificarResultado(id):
 def eliminarResultado(id):
     json=miControladorResultado.delete(id)
     return jsonify(json)
+
+if __name__=='__main__':
+	dataConfig = loadFileConfig()
+	print("Server running : "+"http://"+dataConfig["url-backend"]+":" + str(dataConfig["port"]))
+	serve(app,host=dataConfig["url-backend"],port=dataConfig["port"])
