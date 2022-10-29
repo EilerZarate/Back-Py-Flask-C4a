@@ -49,6 +49,70 @@ def eliminarCandidato(id):
 	json=miControladorCandidato.delete(id)
 	return jsonify(json)
 
+	
+# Vista de Mesa
+from Controllers.ControladorMesa import ControladorMesa
+miControladorMesa=ControladorMesa()
+
+@app.route("/mesas",methods=['GET'])
+def getMesas():
+    json=miControladorMesa.index()
+    return jsonify(json)
+@app.route("/mesas",methods=['POST'])
+def crearMesa():
+    data = request.get_json()
+    json=miControladorMesa.create(data)
+    return jsonify(json)
+@app.route("/mesas/<string:id>",methods=['GET'])
+def getMesa(id):
+    json=miControladorMesa.show(id)
+    return jsonify(json)
+@app.route("/mesas/<string:id>",methods=['PUT'])
+def modificarMesa(id):
+    data = request.get_json()
+    json=miControladorMesa.update(id,data)
+    return jsonify(json)
+@app.route("/mesas/<string:id>",methods=['DELETE'])
+def eliminarMesa(id):
+    json=miControladorMesa.delete(id)
+    return jsonify(json)
+
+# Vista de Partido
+from Controllers.ControladorPartido import ControladorPartido
+miControladorPartido=ControladorPartido()
+
+@app.route("/partidos",methods=['GET'])
+def getPartidos():
+    json=miControladorPartido.index()
+    return jsonify(json)
+@app.route("/partidos",methods=['POST'])
+def crearPartido():
+    data = request.get_json()
+    json=miControladorPartido.create(data)
+    return jsonify(json)
+@app.route("/partidos/<string:id>",methods=['GET'])
+def getPartido(id):
+    json=miControladorPartido.show(id)
+    return jsonify(json)
+@app.route("/partidos/<string:id>",methods=['PUT'])
+def modificarPartido(id):
+    data = request.get_json()
+    json=miControladorPartido.update(id,data)
+    return jsonify(json)
+@app.route("/partidos/<string:id>",methods=['DELETE'])
+def eliminarPartido(id):
+    json=miControladorPartido.delete(id)
+    return jsonify(json)
+
+# Vista de Resultado
+from Controllers.ControladorResultado import ControladorResultado
+miControladorResultado=ControladorResultado()
+
+@app.route("/resultados",methods=['GET'])
+def getResultados():
+    json=miControladorResultado.index()
+    return jsonify(json)
+
 if __name__=='__main__':
 	dataConfig = loadFileConfig()
 	print("Server running : "+"http://"+dataConfig["url-backend"]+":" + str(dataConfig["port"]))
